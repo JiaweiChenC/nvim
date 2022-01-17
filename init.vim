@@ -178,14 +178,24 @@ call plug#begin('~/.config/nvim/plugged')
 
   Plug 'tomasiser/vim-code-dark'
 
+  Plug 'mbbill/undotree'
+
   Plug 'scrooloose/syntastic'
 
   Plug 'cateduo/vsdark.nvim'
 
+  Plug 'tpope/vim-surround'
+
   Plug 'jackguo380/vim-lsp-cxx-highlight'
 
   Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-rust --enable-python'}
+
+  Plug 'yegappan/taglist'
+
 call plug#end()
+
+
+let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
 " =======================
 " ===   plugins  end  ===
 " =======================
@@ -194,9 +204,24 @@ call plug#end()
 " =================================
 " ===   plugins  configuration  ===
 " =================================
-"
-"
 " 
+"==== targlist ====
+map <silent> T :TagbarOpenAutoClose<CR>
+nnoremap ht :UndotreeToggle<CR>
+
+if has("persistent_undo")
+   let target_path = expand('~/.undodir')
+
+    " create the directory and any parent directories
+    " if the location does not exist.
+    if !isdirectory(target_path)
+        call mkdir(target_path, "p", 0700)
+    endif
+
+    let &undodir=target_path
+    set undofile
+endif
+
 " ==== jackguo380/vim-lsp-cxx-highlight ====
 hi default link LspCxxHlSymFunction cxxFunction
 hi default link LspCxxHlSymFunctionParameter cxxParameter
@@ -212,6 +237,13 @@ hi default link LspCxxHlSymMacro cxxMacro
 hi default link LspCxxHlSymEnumMember cxxEnumMember
 hi default link LspCxxHlSymParameter cxxParameter
 hi default link LspCxxHlSymClass cxxTypeAlias
+
+" ===
+" === eleline.vim
+" ===
+let g:airline_powerline_fonts = 0
+
+
 
 " ==== neoclide/coc.nvim ====
 
