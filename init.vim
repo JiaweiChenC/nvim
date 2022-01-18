@@ -190,6 +190,8 @@ call plug#begin('~/.config/nvim/plugged')
 
   Plug 'vim-scripts/taglist.vim'
 
+  Plug 'junegunn/vim-easy-align'
+
 call plug#end()
 
 
@@ -204,6 +206,12 @@ let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
 " =================================
 " 
 "
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
 nnoremap <leader>t :TlistToggle<CR>
 nnoremap ht :UndotreeToggle<CR>
 
