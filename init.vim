@@ -10,7 +10,6 @@
 " vim-esearch
 " fmoralesc/worldslice
 " SidOfc/mkdx
-
 if empty(glob($HOME.'/.config/nvim/autoload/plug.vim'))
 	silent !curl -fLo $HOME/.config/nvim/autoload/plug.vim --create-dirs
 				\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -69,6 +68,7 @@ map s<down> :res -5<CR>
 map s<left> :vertical resize-5<CR>
 map s<right> :vertical resize+5<CR>
 
+imap mm <Esc>
 map <space>l <C-w>l
 map <space>k <C-w>k
 map <space>h <C-w>h
@@ -184,13 +184,11 @@ call plug#begin('~/.config/nvim/plugged')
 
   Plug 'cateduo/vsdark.nvim'
 
-  Plug 'tpope/vim-surround'
-
   Plug 'jackguo380/vim-lsp-cxx-highlight'
 
   Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-rust --enable-python'}
 
-  Plug 'yegappan/taglist'
+  Plug 'vim-scripts/taglist.vim'
 
 call plug#end()
 
@@ -205,8 +203,8 @@ let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
 " ===   plugins  configuration  ===
 " =================================
 " 
-"==== targlist ====
-map <silent> T :TagbarOpenAutoClose<CR>
+"
+nnoremap <leader>t :TlistToggle<CR>
 nnoremap ht :UndotreeToggle<CR>
 
 if has("persistent_undo")
@@ -242,8 +240,6 @@ hi default link LspCxxHlSymClass cxxTypeAlias
 " === eleline.vim
 " ===
 let g:airline_powerline_fonts = 0
-
-
 
 " ==== neoclide/coc.nvim ====
 
