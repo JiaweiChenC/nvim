@@ -194,6 +194,10 @@ call plug#begin('~/.config/nvim/plugged')
 
   Plug 'junegunn/vim-easy-align'
 
+  Plug 'scrooloose/nerdcommenter'
+
+  Plug 'nathanaelkane/vim-indent-guides'
+
 call plug#end()
 
 
@@ -208,6 +212,11 @@ let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
 " =================================
 " 
 "
+
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
+
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 
