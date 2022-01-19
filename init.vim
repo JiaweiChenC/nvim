@@ -158,6 +158,8 @@ call plug#begin('~/.config/nvim/plugged')
 
   Plug 'luochen1990/rainbow'
 
+  Plug 'tpope/vim-surround'
+
   Plug 'tomtom/tcomment_vim'
 
   Plug 'mg979/vim-xtabline'
