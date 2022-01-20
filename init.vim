@@ -237,7 +237,7 @@ let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
 let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
 let g:autoformat_remove_trailing_spaces = 0
-noremap <F3> :Autoformat<CR>
+noremap atf :Autoformat<CR>
 let g:autoformat_verbosemode=1
 
 
