@@ -27,12 +27,23 @@ set number
 set relativenumber
 set ruler
 set hlsearch
+let &t_ut=''
 set expandtab
+set listchars=tab:▸\ ,trail:▫	
+set backspace=indent,eol,start	
+set noeb
+set laststatus=2
 set autoindent
+set confirm
+set foldmethod=indent
+set foldlevel=99
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
+set noswapfile
+set nobackup
 set ignorecase
+set list
 set smartcase
 set notimeout
 set mouse=a
@@ -42,7 +53,11 @@ set wildmenu
 set showcmd
 set expandtab
 set smarttab
+vnoremap <Leader>y "+y
+nmap <Leader>p "+p
 
+
+au BufReadPost * if line("''\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 set encoding=utf-8
 syntax on
 noremap <leader>n :NERDTreeFocus<CR>
@@ -68,7 +83,7 @@ map s<down> :res -5<CR>
 map s<left> :vertical resize-5<CR>
 map s<right> :vertical resize+5<CR>
 
-imap mm <Esc>
+imap ,, <Esc>
 map <space>l <C-w>l
 map <space>k <C-w>k
 map <space>h <C-w>h
@@ -198,6 +213,12 @@ call plug#begin('~/.config/nvim/plugged')
 
   Plug 'nathanaelkane/vim-indent-guides'
 
+  Plug 'mhinz/vim-startify'
+
+  Plug 'Raimondi/delimitMate'
+
+  Plug 'Chiel92/vim-autoformat'
+
 call plug#end()
 
 
@@ -212,6 +233,41 @@ let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
 " =================================
 " 
 "
+"auto format
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:autoformat_remove_trailing_spaces = 0
+noremap <F3> :Autoformat<CR>
+let g:autoformat_verbosemode=1
+
+
+" 1. vscode defult 2. author defult 3. vscode show
+"	\	'guifgs': ['#B21212', '#1B9CED','#FFFC00'],
+"	\	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+"	\	'guifgs': ['#C186BF', '#268EDB','#F79318'],
+	let g:rainbow_conf = {
+	\	'guifgs': ['#C186BF', '#268EDB','#F79318'],
+	\	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+	\	'operators': '_,_',
+	\	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+	\	'separately': {
+	\		'*': {},
+	\		'tex': {
+	\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+	\		},
+	\		'lisp': {
+	\			'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+	\		},
+	\		'vim': {
+	\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+	\		},
+	\		'html': {
+	\			'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+	\		},
+	\		'css': 0,
+	\	}
+	\}
+let g:rainbow_active = 1
 
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
