@@ -280,7 +280,7 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 nnoremap <leader>t :TlistToggle<CR>
-nnoremap ht :UndotreeToggle<CR>
+nnoremap <leader>u :UndotreeToggle<CR>
 
 if has("persistent_undo")
    let target_path = expand('~/.undodir')
