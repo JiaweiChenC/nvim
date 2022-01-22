@@ -52,6 +52,9 @@ set wrap
 set wildmenu
 set showcmd
 set expandtab
+set nowritebackup
+set undolevels=10000         " use many levels of undo
+set history=10000    " After nocompatible
 set smarttab
 vnoremap <Leader>y "+y
 nmap <Leader>p "+p
@@ -233,6 +236,12 @@ let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
 " =================================
 " 
 "
+"===========undotree===============
+if has('persistent_undo')
+  set undodir=$HOME/.vim/undo
+  set undofile 
+endif 
+
 "auto format
 let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
