@@ -229,6 +229,8 @@ call plug#begin('~/.config/nvim/plugged')
 
   Plug 'mhinz/vim-startify'
 
+  Plug 'altercation/vim-colors-solarized'
+
   Plug 'Raimondi/delimitMate'
 
   Plug 'Chiel92/vim-autoformat'
@@ -429,7 +431,10 @@ command! -nargs=0 Gvimspector :call s:generate_vimspector_conf()
 nmap <Leader>v <Plug>VimspectorBalloonEval
 xmap <Leader>v <Plug>vimspectorBalloonEval
 
-colorscheme gruvbox
+syntax enable
+set background=dark
+let g:solarized_termcolors=256
+colorscheme solarized
 
 " ==== syntastic ====
 set statusline+=%#warningmsg#
