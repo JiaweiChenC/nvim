@@ -303,9 +303,11 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
+"===========Taglist==========
 nnoremap <leader>t :TlistToggle<CR>
+let Tlist_Use_Right_Window   = 1
+"===========undotree=========
 nnoremap <leader>u :UndotreeToggle<CR>
-
 if has("persistent_undo")
    let target_path = expand('~/.undodir')
 
@@ -433,8 +435,7 @@ xmap <Leader>v <Plug>vimspectorBalloonEval
 
 syntax enable
 set background=dark
-let g:solarized_termcolors=256
-colorscheme solarized
+colorscheme gruvbox
 
 " ==== syntastic ====
 set statusline+=%#warningmsg#
