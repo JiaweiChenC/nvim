@@ -1,26 +1,3 @@
-" __  ____   __  _   ___     _____ __  __ ____   ____
-"|  \/  \ \ / / | \ | \ \   / /_ _|  \/  |  _ \ / ___|
-"| |\/| |\ V /  |  \| |\ \ / / | || |\/| | |_) | |
-"| |  | | | |   | |\  | \ V /  | || |  | |  _ <| |___
-"|_|  |_| |_|   |_| \_|  \_/  |___|_|  |_|_| \_\\____|
-
-" Author: @Jiawei
-
-" Checkout-list
-" vim-esearch
-" fmoralesc/worldslice
-" SidOfc/mkdx
-if empty(glob($HOME.'/.config/nvim/autoload/plug.vim'))
-	silent !curl -fLo $HOME/.config/nvim/autoload/plug.vim --create-dirs
-				\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
-
-set nocompatible
-filetype on
-filetype indent on
-filetype plugin on
 filetype plugin indent on
 
 set number
@@ -56,9 +33,9 @@ set nowritebackup
 set undolevels=10000         " use many levels of undo
 set history=10000    " After nocompatible
 set smarttab
-vnoremap <Leader>y "+y
-nmap <Leader>p "+p
 
+vnoremap Y "+y
+nmap P "+p
 
 au BufReadPost * if line("''\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 set encoding=utf-8
@@ -69,7 +46,7 @@ noremap <leader>n :NERDTreeFocus<CR>
 
 "markdownmap
 nmap ,m <Plug>MarkdownPreview<CR>
-nmap ,s <Plug>MarkdownPreviewStop<CR>
+nmap ,ms <Plug>MarkdownPreviewStop<CR>
 
 
 " disable the s key
@@ -80,8 +57,6 @@ nnoremap <SPACE> <Nop>
 map <Space> <Leader>
 noremap J 5j
 noremap K 5k
-noremap L 5l
-noremap H 5h
 
 noremap su :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
 noremap sd :set splitbelow<CR>:split<CR>
@@ -116,7 +91,7 @@ autocmd BufRead,BufNewFile *.md setlocal spell
 
 
 " Opening a terminal window
-noremap <LEADER>/ :set splitbelow<CR>:split<CR>:res +10<CR>:term<CR>
+noremap <sLEADER>/ :set splitbelow<CR>:split<CR>:res +10<CR>:term<CR>
 
 
 " Compile function
@@ -179,6 +154,8 @@ call plug#begin('~/.config/nvim/plugged')
 
   Plug 'vim-airline/vim-airline'
 
+  Plug 'easymotion/vim-easymotion'
+
   Plug 'skywind3000/vim-terminal-help'
 
   Plug 'luochen1990/rainbow'
@@ -229,13 +206,13 @@ call plug#begin('~/.config/nvim/plugged')
 
   Plug 'mhinz/vim-startify'
 
+  Plug 'itchyny/calendar.vim'
+
   Plug 'altercation/vim-colors-solarized'
 
   Plug 'Raimondi/delimitMate'
 
   Plug 'Chiel92/vim-autoformat'
-
-  Plug 'lervag/vimtex'
 
 call plug#end()
 
@@ -506,7 +483,7 @@ let g:mkdp_browserfunc = ''
 " hide_yaml_meta: if hide yaml metadata, default is 1
 " sequence_diagrams: js-sequence-diagrams options
 " content_editable: if enable content editable for preview page, default: v:false
-" disable_filename: if disable filename header for preview page, default: 0
+" disable_filename: if dable filename header for preview page, default: 0
 let g:mkdp_preview_options = {
     \ 'mkit': {},
     \ 'katex': {},
@@ -540,35 +517,15 @@ let g:mkdp_page_title = '「${name}」'
 " these filetypes will have MarkdownPreview... commands
 let g:mkdp_filetypes = ['markdown']
 
+"================calendar===============
+let g:calendar_google_calendar = 1
+let g:calendar_google_task = 1
+noremap \\ :Calendar -view=clock -position=here<CR>
+noremap \c :Calendar -position=here<CR>
+source ~/.cache/calendar.vim/credentials.vim
 
-"============vimtex===============
-" This is necessary for VimTeX to load properly. The "indent" is optional.
-" Note that most plugin managers will do this automatically.
-filetype plugin indent on
+"=================easymotion============
 
-" This enables Vim's and neovim's syntax-related features. Without this, some
-" VimTeX features will not work (see ":help vimtex-requirements" for more
-" info).
-syntax enable
 
-" Viewer options: One may configure the viewer either by specifying a built-in
-" viewer method:
-let g:vimtex_view_method = 'zathura'
 
-" Or with a generic interface:
-let g:vimtex_view_general_viewer = 'okular'
-let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
 
-" VimTeX uses latexmk as the default compiler backend. If you use it, which is
-" strongly recommended, you probably don't need to configure anything. If you
-" want another compiler backend, you can change it as follows. The list of
-" supported backends and further explanation is provided in the documentation,
-" see ":help vimtex-compiler".
-let g:vimtex_compiler_method = 'latexrun'
-
-" Most VimTeX mappings rely on localleader and this can be changed with the
-" following line. The default is usually fine and is the symbol "\".
-let maplocalleader = ","
-"=========airlinethem===========
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'default'
